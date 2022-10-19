@@ -24,7 +24,6 @@ import com.example.microanuncios.model.Anuncio;
 @RestController
 @RequestMapping("/api/anuncios")
 public class MiControlador {
-	
 
 	@Autowired
 	IAnuncioService anunciosService;

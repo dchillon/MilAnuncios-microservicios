@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.microusuarios.dto.AnuncioDTO;
 import com.example.microusuarios.dto.UsuarioDTO;
 import com.example.microusuarios.interfaces.IUsuarioService;
 import com.example.microusuarios.model.Usuario;
@@ -38,5 +39,11 @@ public class UsuarioService implements IUsuarioService {
 	public void agregarUsuario(Usuario usuario) {
 		repositorio.save(usuario);
 	}
+
+	@Override
+	public List<AnuncioDTO> listAllAnunciosByUer(String idUsuario) {
+		return repositorio.listAllAnunciosByUer(idUsuario);
+	}
+
 
 }
