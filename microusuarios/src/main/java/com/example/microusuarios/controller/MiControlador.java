@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.microusuarios.dto.AnuncioDTO;
 import com.example.microusuarios.dto.UsuarioDTO;
+import com.example.microusuarios.interfaces.IAnuncioService;
 import com.example.microusuarios.interfaces.IUsuarioService;
 import com.example.microusuarios.model.Usuario;
 
@@ -25,7 +26,10 @@ public class MiControlador {
 	@Autowired
 	IUsuarioService usuariosService;
 	
-	@GetMapping("/lista_usurios")
+	@Autowired
+	IAnuncioService anuncioService;
+	
+	@GetMapping("/lista_usuarios")
 	public ResponseEntity<List<UsuarioDTO>> muestraUsuarios(Model model){
 	
 		if(usuariosService.listUsuarios().size() == 0) {
@@ -37,13 +41,13 @@ public class MiControlador {
 	
 	@GetMapping("/{id_usuario}/lista_anuncios")
 	public ResponseEntity<List<AnuncioDTO>> muestraAnunciosUsuario(Model model,
-			@PathVariable("idUsuario") String idUsuario){
+			@PathVariable("id_usuario") String idUsuario){
 		
-		if(usuariosService.listAllAnunciosByUer(idUsuario).size() == 0) {
+		if(anuncioService.listAllAnunciosByUser(idUsuario).size() == 0) {
 			return ResponseEntity.noContent().build();  
 		}
  
-		return ResponseEntity.ok(usuariosService.listAllAnunciosByUer(idUsuario));
+		return ResponseEntity.ok(anuncioService.listAllAnunciosByUser(idUsuario));
 	}
 	
 	@PostMapping("/add_usuario")
