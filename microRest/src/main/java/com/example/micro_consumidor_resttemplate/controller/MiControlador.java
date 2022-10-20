@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.micro_consumidor_resttemplate.services.UsuarioService;
+import com.example.micro_consumidor_resttemplate.util.AnuncioV;
 import com.example.micro_consumidor_resttemplate.util.UsuarioV;
 
 @Controller
@@ -16,12 +18,67 @@ public class MiControlador {
 	@Autowired
 	UsuarioService usuarioService;
 	
+
+	
+
+	@GetMapping("/formularioRegistroUsuario")
+	public String formularioRegistroUsuario(Model model) {
+		
+		model.addAttribute("usuario", new UsuarioV());
+		
+		
+		return "formularioRegistroUsuario";
+	}
+	
+	@PostMapping("/registroUsuario")
+	public String registroUsuario(UsuarioV usuario, Model model) {
+		
+		usuarioService.agregarUsuario(usuario);
+		model.addAttribute("usuario", usuario);
+		
+		return "formularioIniciarSesion";
+	}
+	
+	@PostMapping("/publicarAnuncio")
+	public String publicarAnuncio(AnuncioV anuncio, Model model) {
+		
+		anuncioService.agregarAnuncio(anuncio);
+		model.addAttribute("anuncios", anuncio);
+		
+		return "anunciosByUser";
+	}
+	
+	
+	@GetMapping("/formularioIniciarSesion")
+	public String formularioIniciarSesion(Model model) {
+		
+		model.addAttribute("usuario", new UsuarioV());
+		
+		return "formularioIniciarSesion";
+	}
+	
+	@PostMapping("/inicioSesion")
+	public String iniciarSesion(UsuarioV usuario, Model model) {
+		
+		model.addAttribute("anuncios", usuarioService.listAllAnunciosByUser(usuario.getUser()));
+		model.addAttribute("anuncioV", new AnuncioV());
+		return "anunciosByUser";
+	}
+
 	@GetMapping("/lista_usuarios")
 	public String listUsuarios(Model model) {
 		
 		model.addAttribute("usuarios", usuarioService.listUsuarios());
 		
 		return "lista_usuarios";
+	}
+	
+	@GetMapping("/formularioAgregarAnuncio")
+	public String formularioAgregarAnuncio(Model model) {
+		
+		model.addAttribute("anuncioV", new AnuncioV());
+		
+		return "formularioAgregarAnuncio";
 	}
 	
 	@GetMapping("{idUsuario}/lista_anuncios")
