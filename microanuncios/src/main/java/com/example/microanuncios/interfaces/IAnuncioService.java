@@ -12,5 +12,6 @@ public interface IAnuncioService {
 	public Anuncio findByIdAnuncio(int idAnuncio);
 	public void borrarAnuncio(int id_anuncio);
 	public void actualizarAnuncio(AnuncioDto anuncio);
+	public List<AnuncioDto> findByIdCategoria(int id_categoria);
 
 }

@@ -78,6 +78,16 @@ public class MiControlador {
 		return ResponseEntity.ok(a);    
 	}
 	
+	@GetMapping("/{idCategoria}")
+	public ResponseEntity<List<AnuncioDto>> getAnuncioByCategoria(@PathVariable("idCategoria") Integer idCategoria){
+		
+		if(anunciosService.findByIdCategoria(idCategoria).size() == 0) {
+			return ResponseEntity.noContent().build();  
+		}
+ 
+		return ResponseEntity.ok(anunciosService.findByIdCategoria(idCategoria));    
+	}
+	
 	@DeleteMapping("/borrar_anuncio_by_id/{idAnuncio}")
 	public ResponseEntity<Integer> borrarAnuncioById(@PathVariable("idAnuncio") Integer idAnuncio){
 		
