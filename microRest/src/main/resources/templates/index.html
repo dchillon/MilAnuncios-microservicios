@@ -1,13 +1,89 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html>
 <head>
+<link rel="icon" href="https://pbs.twimg.com/profile_images/763689368854859776/bnUiJBr1_400x400.jpg">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<meta HTTP-EQUIV="REFRESH" CONTENT="5"/>
 <meta charset="ISO-8859-1">
-<title>Pagina de inicio</title>
+<title>MILANUNCIOS</title>
 </head>
-<body>
-	<h2>Menu de opciones </h2><br><br><br>
-	<a th:href="@{/anunciosByUser}">LISTADO DE CATEGORIAS</a><br><br><br><br>
+
+<body style="background-color:#9DC3C2;">
+
+<header style="background-color:#77A6B6">
+
+<br><br>
+
+<h2 style="text-align:center">MILANUNCIOS</h2>
 	
+<div style="text-align:right">
+	  
+      <a th:href="@{/formularioIniciarSesion}" class="card-link btn btn-info">INICIAR SESION</a>
+      <a th:href="@{/formularioRegistroUsuario}" class="card-link btn btn-info">REGISTRARSE</a>
+
+</div><br>
+
+</header>
+
+
+<!-- 
+<div class="card-deck  mt-3">
+	<div class="card" style="width: 18rem; background-color: #FCB1A6; float:left; align-items:center">
+	  <img src="https://medioambiente.malaga.eu/opencms/export/sites/sostenibilidad/.content/galerias/imagenes-estructura/tablon.png_1991663229.png" alt="Avatar" style="width:40%">
+	  <div class="container"style="text-align:center">
+	    <h4 ><a th:href="@{/anunciosByUser}"><b>listado de anuncios</b></a></h4>
+	    <p></p>
+	  </div>
+	</div>
+	
+	<div class="card" style="width: 18rem; background-color: #FCB1A6; float:right; align-items:center">
+	  <img src="https://medioambiente.malaga.eu/opencms/export/sites/sostenibilidad/.content/galerias/imagenes-estructura/tablon.png_1991663229.png" alt="Avatar" style="width:40%">
+	  <div class="container"  style="text-align:center">
+	    <h4><a th:href="@{/anunciosByUser}"><b>alta anuncios</b></a></h4>
+	    <p></p>
+	  </div>
+	</div>
+
+</div>
+ -->
+
+
+ <!-- Account Number field -->
+
+
+
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      
+      
+      <th scope="col">Titulo</th>
+      <th scope="col">Descripcion</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Localidad</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Categoria</th>
+      <th scope="col">Usuario</th>
+
+    </tr>
+  </thead>
+  <tbody>
+     <tr th:each="a : ${anuncios}">
+					
+					<td th:text="${a.titulo}"></td>
+					<td th:text="${a.descripcion}"></td>
+					<td th:text="${a.fecha}"></td>
+					<td th:text="${a.localidad}"></td>
+					<td th:text="${a.precio}"></td>
+					<td th:text="${a.id_categoria}"></td>
+					<td th:text="${a.usuario}"></td>
+					
+
+
+	</tr>
+ </tbody>
+</table>
+
 	
 
 </body>
