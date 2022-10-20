@@ -57,4 +57,20 @@ public class AnuncioService implements IAnuncioService {
 		repositorio.save(a);
 	}
 
+	@Override
+	public List<AnuncioDto> findByIdCategoria(int id_categoria) {
+		List<AnuncioDto> dtos = new ArrayList<AnuncioDto>();
+		List<Anuncio> anuncios = (List<Anuncio>) repositorio.findAll();
+		for (Anuncio anuncio : anuncios) {
+			if(anuncio.getCategoria().getId_categoria() == id_categoria) {
+				AnuncioDto dto = new AnuncioDto(anuncio.getId_anuncio(), anuncio.getId_categoria(), anuncio.getTitulo(),
+						anuncio.getDescripcion(), anuncio.getPrecio(), anuncio.getFecha(), anuncio.getLocalidad(), 
+						anuncio.getUser());
+				dtos.add(dto);
+			}
+			
+		}
+		return dtos;
+	}
+
 }

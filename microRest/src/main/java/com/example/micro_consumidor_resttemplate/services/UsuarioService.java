@@ -11,5 +11,6 @@ public interface UsuarioService {
 	List<Anuncio> listAllAnunciosByUser(String idUsuario);
 	List<Usuario> listUsuarios();
 	Integer agregarUsuario(UsuarioV usuario);
+	
 
 }
