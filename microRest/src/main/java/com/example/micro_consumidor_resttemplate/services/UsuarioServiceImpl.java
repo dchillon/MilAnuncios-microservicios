@@ -1,5 +1,6 @@
 package com.example.micro_consumidor_resttemplate.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +24,16 @@ public class UsuarioServiceImpl implements UsuarioService {
 	
 	@Override
 	public List<Usuario> listUsuarios(){
-		List<Usuario> productos = null;
+		List<Usuario> usuarios = new ArrayList<Usuario>();
 		
-		productos = restTemplate.getForObject(url + "/lista_usuarios", List.class);
+		usuarios = restTemplate.getForObject(url + "/lista_usuarios", List.class);
 		
-		return productos;
+		return usuarios;
 	}
 	
 	@Override
 	public List<Anuncio> listAllAnunciosByUser(String idUsuario) {
+
 		List<Anuncio> productos = null;
 		
 		productos = restTemplate.getForObject(url + "/"+idUsuario+"/lista_anuncios", List.class);
@@ -45,6 +47,5 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return response;
 		
 	}
-
 
 }
