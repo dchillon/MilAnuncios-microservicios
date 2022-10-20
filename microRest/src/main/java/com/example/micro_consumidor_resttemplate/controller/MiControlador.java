@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.micro_consumidor_resttemplate.services.AnuncioService;
 import com.example.micro_consumidor_resttemplate.services.UsuarioService;
 import com.example.micro_consumidor_resttemplate.util.AnuncioV;
 import com.example.micro_consumidor_resttemplate.util.UsuarioV;
@@ -17,7 +18,7 @@ public class MiControlador {
 	
 	@Autowired
 	UsuarioService usuarioService;
-	
+	AnuncioService anuncioService;
 
 	
 
