@@ -1,0 +1,36 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h2 style="text-align:center">LISTADO DE PRODUCTOS </h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id producto</th>
+      <th scope="col">descripcion</th>
+      <th scope="col">id categoria</th>
+      <th scope="col">precio</th>
+      <th scope="col">stock</th>
+    </tr>
+  </thead>
+  <tbody>
+     <tr th:each="p : ${productos}">
+					<td th:text="${p.id_producto}"></td>
+					<td th:text="${p.descripcion}"></td>
+					<td th:text="${p.id_categoria}"></td>
+					<td th:text="${p.precio}"></td>
+					<td th:text="${p.stock}"></td>
+					<td><a th:href="${'/delete/' + p.id_producto}">delete</a></td>
+					<td><a th:href="${'/editar/' + p.id_producto}">editar</a></td>
+					
+	</tr>
+ </tbody>
+ </table>
+ <a th:href="@{/}">ir a menu</a>
+</body>
+</html>
