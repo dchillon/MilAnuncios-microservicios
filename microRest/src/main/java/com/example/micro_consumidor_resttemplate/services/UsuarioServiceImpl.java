@@ -33,11 +33,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 	
 	@Override
 	public List<Anuncio> listAllAnunciosByUser(String idUsuario) {
-		List<Anuncio> anuncios = null;
+
+		List<Anuncio> productos = null;
 		
-		anuncios = restTemplate.getForObject(url + "/"+idUsuario+"/lista_anuncios", List.class);
+		productos = restTemplate.getForObject(url + "/"+idUsuario+"/lista_anuncios", List.class);
 		
-		return anuncios;
+		return productos;
 	}
 
 	@Override
@@ -46,6 +47,5 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return response;
 		
 	}
-
 
 }
