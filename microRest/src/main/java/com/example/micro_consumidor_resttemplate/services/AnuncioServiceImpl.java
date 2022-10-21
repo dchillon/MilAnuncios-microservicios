@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import com.example.micro_consumidor_resttemplate.util.Anuncio;
 import com.example.micro_consumidor_resttemplate.util.AnuncioV;
 
+
 public class AnuncioServiceImpl implements AnuncioService {
 
 	public String url;

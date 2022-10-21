@@ -17,9 +17,10 @@ public class MiControlador {
 	
 	@Autowired
 	UsuarioService usuarioService;
+	
+	@Autowired 
 	AnuncioService anuncioService;
 	
-
 	@GetMapping("/formularioRegistroUsuario")
 	public String formularioRegistroUsuario(Model model) {
 		
@@ -42,7 +43,7 @@ public class MiControlador {
 	public String publicarAnuncio(AnuncioV anuncio, Model model) {
 		
 		anuncioService.agregarAnuncio(anuncio);
-		model.addAttribute("anuncios", anuncio);
+		model.addAttribute("anuncios", usuarioService.listAllAnunciosByUser(anuncio.getUser()));
 		
 		return "anunciosByUser";
 	}
@@ -72,10 +73,13 @@ public class MiControlador {
 		return "lista_usuarios";
 	}
 	
-	@GetMapping("/formularioAgregarAnuncio")
-	public String formularioAgregarAnuncio(Model model) {
+	@GetMapping("/formularioAgregarAnuncio/{user}")
+	public String formularioAgregarAnuncio(@PathVariable("user") String user , 
+			Model model) {
 		
-		model.addAttribute("anuncioV", new AnuncioV());
+		AnuncioV anuncio = new AnuncioV();
+		anuncio.setUser(user);
+		model.addAttribute("anuncioV", anuncio);
 		
 		return "formularioAgregarAnuncio";
 	}
@@ -88,6 +92,14 @@ public class MiControlador {
 		return "lista_anuncios";
 	}
 		
+	@GetMapping("/")
+	public String listAllAnunciosByUser(Model model) {
+		
+		model.addAttribute("anuncios", anuncioService.muestraAnuncios());
+		
+		return "index";
+	}
+	
 	@PostMapping("add_usuario")
 	public String agregarUsuario(UsuarioV usuario_v, Model model) {
 		
